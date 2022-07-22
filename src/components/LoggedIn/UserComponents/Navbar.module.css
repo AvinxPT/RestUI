@@ -1,0 +1,17 @@
+.nav {
+    background-color: #333;
+    color: white;
+    display: flex;
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.welcome{
+    color:pink;
+    flex-grow: 4;
+}

@@ -1,64 +1,39 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
+
+//scripts
+import isUsernameValid from './scripts/validatePw';
 
 //login components
 import LoginForm from './components/LoginComponents/LoginForm';
 
+//content components
+import Employees from './components/LoggedIn/Employees';
+import Menus from './components/LoggedIn/Menus';
+import Restaurants from './components/LoggedIn/Restaurants';
+import Schedule from './components/LoggedIn/Schedule';
+
 function App() {
-  
-  //Hardcoded info
-  const hardcodedUser = {
-    id:"user@user.com",
-    password:"password123"
-  }
+  var path = window.location.pathname;
+  var storedSession = window.localStorage.getItem("auth");
 
-  //login states
-  const [user, setUser] = useState({id: "", password: ""});
-  const [error, setError] = useState(false);
-
-
-  //Login-Logout calls
-  const Login = (props) => {
-    //console.log(props);
-    //console.log(hardcodedUser);
-
-    if(props.id === hardcodedUser.id && props.password === hardcodedUser.password){
-      console.log("Logged in");
-      setError(false);
-      setUser({
-        id:props.id,
-        password:props.password
-      })
-    } else {
-      setError(true);
-      console.log("Incorrect Login details");
+  if(storedSession !== null) {
+    let SessionParsed = JSON.parse(storedSession);
+    if(isUsernameValid(SessionParsed.name, SessionParsed.password)){
+      if(path === "/employees"){
+        return (<Employees />);
+      } else if (path === "/menus"){
+        return(<Menus />);
+      } else if (path === "/restaurants"){
+        return(<Restaurants />);
+      } else if (path === "/schedule"){
+        return(<Schedule />);
+      }
     }
   }
-
-  const Logout = () => {
-    console.log("Logout");
-    setUser({
-      id:"",
-      password:""
-    })
-  }
-  
-  return (
-    <div>
-      
-      {(user.id !== "") ? (
-        <div>
-          <h1>You are Logged IN</h1>
-          <button onClick={Logout}>LOGOUT</button>
-        </div>
-      ) : (
-      <LoginForm login={Login} />
-      )}
-      
-      {error === true ? <p>Incorrect Login Details</p> : ""}
-    
-    </div>
-  );
+    return (
+      <LoginForm />
+    );
 }
 
 export default App;
