@@ -3,16 +3,16 @@ import React from 'react';
 //css
 import classes from './Navbar.module.css';
 
-const Navbar = (props) => {
+const Navbar = () => {
     
     return(
         <nav className={classes.nav}>
             <ul>
-                <li className={classes.welcome}>Welcome {props.user}</li>
-                <li href="/Restaurants">Restaurants</li>
-                <li href="/Employees">Employees</li>
-                <li href="/Schedule">Schedule</li>
-                <li href="/Menus">Menus</li>
+                <li className={classes.welcome}>Welcome</li>
+                <li><a href="/restaurants">Restaurants</a></li>
+                <li><a href="/employees">Employees</a></li>
+                <li><a href="/schedule">Schedule</a></li>
+                <li><a href="/menus">Menus</a></li>
             </ul>
         </nav>
     );

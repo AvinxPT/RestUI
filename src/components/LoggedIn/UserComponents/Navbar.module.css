@@ -11,6 +11,11 @@
     gap: 2rem;
 }
 
+.nav ul a{
+    text-decoration: none;
+    color:inherit;
+}
+
 .welcome{
     color:pink;
     flex-grow: 4;
